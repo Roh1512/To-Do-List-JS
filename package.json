@@ -1,0 +1,31 @@
+{
+  "name": "to-do-list-js",
+  "version": "1.0.0",
+  "description": "To do List app",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Roh1512/To-Do-List-JS.git"
+  },
+  "keywords": [
+    "To",
+    "Do",
+    "List"
+  ],
+  "author": "Rohith A",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Roh1512/To-Do-List-JS/issues"
+  },
+  "homepage": "https://github.com/Roh1512/To-Do-List-JS#readme",
+  "devDependencies": {
+    "webpack": "^5.88.1",
+    "webpack-cli": "^5.1.4"
+  }
+}
