@@ -6,9 +6,34 @@
     <title>To Do List App</title>
 </head>
 <body>
-    <div class="content" class="content"></div>
-    <input type="date" id="date">;
-    <input type="button" id="btn">
+    <header><h1>Todo List</h1></header>
+    <div class="content" id="content">
+        <div class="sideBar" id="sideBar">
+            <div class="localTasks" id="localTasks">
+                <button class="localTasksBtn"  id="localTasksBtn" value="Local Tasks">Local Tasks</button>
+            </div>
+            <div class="projects" id="projects">
+                <h2 class="headingPROJECTS">PROJECTS</h2>
+                <form id="addProjectForm" class="addProjectForm">
+                    <input type="text" name="project" id="addProjectText" placeholder="Enter Project Name" required>
+                    <button type="submit" id="addProjectBtn" class="addProjectBtn">+ New Project</button>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- <div class="localTasksTab" id="localTasksTab">
+            <form class="addTask" id="addTask">
+                <input type="text" class="newTaskText newTaskText">
+                <button type="submit" class="addNewTask" id="addNewTask">+Add task</button>
+            </form>
+            <div class="task" id="task">
+                <h3>New task from input</h3>
+                <button>Done</button>
+                <button>Delete</button>
+            </div>
+        </div> -->
+    </div>
     <script src="./main.js"></script>
 </body>
 </html>

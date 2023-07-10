@@ -1,8 +1,9 @@
 class NewTask {
-    constructor(task,dueDate,id){
-        this.id = /* new Date().getTime() */id;
+    constructor(task,dueDate){
+        this.id = new Date().getTime();
         this.task = task;
         this.dueDate = dueDate;
+        this.dueDateTxt
         this.complete = false;
     }
     set completeStatus(value){
@@ -14,12 +15,30 @@ class NewTask {
     }
     set setDueDate(dueDate) {
         if(this.dueDate === undefined || this.dueDate === ""){
-            this.dueDate = "No Due Date";
+            this.dueDateTxt = "No Due Date";
         }else if(dueDate instanceof Date && !isNaN(dueDate.getTime())) {
-            this.dueDate = dueDate;
+            this.dueDateTxt = `${dueDate.getDate()}-${dueDate.getMonth()}-${dueDate.getFullYear()}`;
         }else {
             throw new Error("Expected a date. At NewTask")
         }
+    }
+
+    isToday() {
+        const currentDate = new Date();
+        const taskDate = new Date(this.dueDate);
+        return (
+        taskDate.getDate() === currentDate.getDate() &&
+        taskDate.getMonth() === currentDate.getMonth() &&
+        taskDate.getFullYear() === currentDate.getFullYear()
+        );
+    }
+
+    isThisWeek() {
+        const currentDate = new Date();
+        const taskDate = new Date(this.dueDate);
+        const oneWeekMilliseconds = 7 * 24 * 60 * 60 * 1000; // Number of milliseconds in one week
+        const diffInMilliseconds = taskDate.getTime() - currentDate.getTime();
+        return diffInMilliseconds >= 0 && diffInMilliseconds < oneWeekMilliseconds;
     }
 }
 
