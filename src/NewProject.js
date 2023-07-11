@@ -1,5 +1,5 @@
 class NewProject {
-  constructor(name, dueDate) {
+  constructor(name,dueDate) {
     this.id = new Date().getTime();
     this.name = name;
     this.tasks = [];
@@ -24,7 +24,7 @@ class NewProject {
     this.tasksToday();
   }
 
-  set completeClass(value) {
+  set completeStatus(value) {
     if (typeof value === "boolean") {
       this.complete = value;
     } else {

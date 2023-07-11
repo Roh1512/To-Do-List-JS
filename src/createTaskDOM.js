@@ -21,18 +21,22 @@ function createTaskDOM(NewTaskObj,NewProjectObj,myTodos){
     const taskStatusBtn = document.createElement("button");
     taskStatusBtn.setAttribute("type","button");
     taskStatusBtn.classList.add("taskStatusBtn");
+    taskStatusBtn.classList.add("taskBtn")
     taskStatusBtn.textContent = NewTaskObj.complete ? "Done" : "Not Done";
-    if(task.complete) {
+    if(task.complete === true) {
         taskStatusBtn.classList.add("taskDone");
         taskStatusBtn.classList.remove("taskNotDone");
+        taskText.classList.add("taskComplete");
     }else {
         taskStatusBtn.classList.add("taskNotDone");
         taskStatusBtn.classList.remove("taskDone");
+        taskText.classList.remove("taskComplete");
     }
 
     taskDiv.appendChild(taskStatusBtn);
     const taskDeleteBtn = document.createElement("button");
     taskDeleteBtn.setAttribute("type","button");
+    taskDeleteBtn.classList.add("taskBtn")
     taskDeleteBtn.classList.add("taskDeleteBtn");
     taskDeleteBtn.textContent = "Delete";
     taskDiv.appendChild(taskDeleteBtn);
@@ -63,16 +67,18 @@ function createTaskDOM(NewTaskObj,NewProjectObj,myTodos){
                 for(let j=0;j<myTodos[i].tasks.length;j++){
                     if(myTodos[i].tasks[j].id === task.id){
                         if(myTodos[i].tasks[j].complete === false){
-                            myTodos[i].tasks[j].completeStatus = true;
+                            myTodos[i].tasks[j].complete = true;
                             console.log(myTodos[i].tasks[j]);//Console
                             taskStatusBtn.textContent = "Done";
+                            taskText.classList.add("taskComplete");
                             taskStatusBtn.classList.add("taskDone");
                             taskStatusBtn.classList.remove("taskNotDone");
                         }else if(myTodos[i].tasks[j].complete === true){
-                            myTodos[i].tasks[j].completeStatus = false;
+                            myTodos[i].tasks[j].complete = false;
                             console.log(myTodos[i].tasks[j]);//console
                             taskStatusBtn.textContent = "Not Done";
                             taskStatusBtn.classList.add("taskNotDone");
+                            taskText.classList.remove("taskComplete");
                             taskStatusBtn.classList.remove("taskDone");
                         }
                     }
@@ -81,6 +87,5 @@ function createTaskDOM(NewTaskObj,NewProjectObj,myTodos){
         }
         save(myTodos);
     })
-    load()
     return taskDiv;
 }

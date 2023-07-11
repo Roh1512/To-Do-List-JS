@@ -6,13 +6,6 @@ class NewTask {
         this.dueDateTxt
         this.complete = false;
     }
-    set completeStatus(value){
-        if (typeof value === 'boolean') {
-            this.complete = value;
-        } else {
-            throw new Error("Invalid value. Expected a boolean. At 'NewTask'.complete");
-        }
-    }
     set setDueDate(dueDate) {
         if(this.dueDate === undefined || this.dueDate === ""){
             this.dueDateTxt = "No Due Date";

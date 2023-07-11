@@ -2,6 +2,7 @@ export { createProjectDOM, createProjectBtn };
 import NewTask from "./NewTask";
 import createTaskDOM from "./createTaskDOM";
 import { save,load } from "./Save_Load";
+import emptyDOM from "./emptyDOM";
 
 
 function createProjectDOM(projectObj,myTodos) {
@@ -75,9 +76,9 @@ function createProjectDOM(projectObj,myTodos) {
     todaysTasksDiv.classList.add("hide");
 
 
-    allTasksDiv.innerText= "All";
-    todaysTasksDiv.innerText = "Today";
-    thisWeeksTasksDiv.innerText = "ThisWeek"
+    allTasksDiv.innerText= "All Tasks";
+    todaysTasksDiv.innerText = "Tasks for Today";
+    thisWeeksTasksDiv.innerText = "Tasks for this Week"
     viewTasksDiv.appendChild(allTasksDiv);
     viewTasksDiv.appendChild(thisWeeksTasksDiv);
     viewTasksDiv.appendChild(todaysTasksDiv);
@@ -129,6 +130,9 @@ function createProjectDOM(projectObj,myTodos) {
             thisWeeksTasksDiv.appendChild(createTaskDOM(task,project,myTodos));
         }
         save(myTodos);
+        myTodos = load()
+        taskInputElem.value= "";
+        taskDueDate.value="";
     });
 
 
@@ -176,7 +180,7 @@ function createProjectBtn(project,myTodos,newProjectDom){
             save(myTodos)
             myTodos = load()
         }
-        mainContent.replaceChildren(document.createElement("h1").textContent = "No Project Selected. Add a project or select one.")
+        mainContent.replaceChildren(emptyDOM())
     })
     return projectBtn;
 }
