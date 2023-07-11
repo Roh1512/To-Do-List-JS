@@ -134,12 +134,11 @@ function createProjectDOM(projectObj,myTodos) {
 
 
     //Load all Existing tasks lists
-    window.addEventListener("load",() => {
-
-        for(let i = 0; i < myTodos.length; i++){
+    for(let i = 0; i < myTodos.length; i++){
             if(myTodos[i].id === project.id){
-                for(let j = 0; j < myTodos[i].tasks.length; j++){
-                    allTasksDiv.appendChild(createTaskDOM(myTodos[i].tasks[j],myTodos[i],myTodos));
+                for (let j = 0; j < myTodos[i].tasks.length; j++) {
+                    const taskElement = createTaskDOM(myTodos[i].tasks[j], myTodos[i], myTodos);
+                    allTasksDiv.appendChild(taskElement); // Append the task element to the container
                 }
                 for(let j = 0; j < myTodos[i].today.length; j++){
                     todaysTasksDiv.appendChild(createTaskDOM(myTodos[i].today[j],myTodos[i],myTodos))
@@ -148,15 +147,14 @@ function createProjectDOM(projectObj,myTodos) {
                     thisWeeksTasksDiv.appendChild(createTaskDOM(myTodos[i].thisWeek[j],myTodos[i],myTodos))
                 }
             }
-        }
-    })
-
+    }
     return projectDiv;
 }
 
 function createProjectBtn(project,myTodos,newProjectDom){
     const projectBtn = document.createElement("div");
     projectBtn.classList.add("localTasksBtn");
+    projectBtn.setAttribute("data-project-id",project.id);
     const projectBtnText = document.createElement("p");
 
     projectBtnText.textContent = project.name;
@@ -168,12 +166,17 @@ function createProjectBtn(project,myTodos,newProjectDom){
 
     projectBtn.appendChild(projectBtnText);
     projectBtn.appendChild(closeBtn);
-    closeBtn.addEventListener("click",() => {
+    closeBtn.addEventListener("click",(e) => {
+        const mainContent = document.getElementById("mainContent");
+        e.stopPropagation()
         for(let i=0;i<myTodos.length;i++){
             myTodos = myTodos.filter(t => t.id !== project.id);
-            projectBtn.remove();
             newProjectDom.remove();
+            projectBtn.remove();
+            save(myTodos)
+            myTodos = load()
         }
+        mainContent.replaceChildren(document.createElement("h1").textContent = "No Project Selected. Add a project or select one.")
     })
     return projectBtn;
 }

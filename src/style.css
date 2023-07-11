@@ -20,6 +20,9 @@
 .content {
     display: flex;
 }
+.mainContent{
+    width: 100%;
+}
 header{
     background-color: var(--headerBG);
     color: var(--headerColor);

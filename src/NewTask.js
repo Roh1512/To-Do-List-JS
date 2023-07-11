@@ -17,7 +17,7 @@ class NewTask {
         if(this.dueDate === undefined || this.dueDate === ""){
             this.dueDateTxt = "No Due Date";
         }else if(dueDate instanceof Date && !isNaN(dueDate.getTime())) {
-            this.dueDateTxt = `${dueDate.getDate()}-${dueDate.getMonth()}-${dueDate.getFullYear()}`;
+            this.dueDateTxt = `Due Date : ${dueDate.getDate()}-${dueDate.getMonth()}-${dueDate.getFullYear()}`;
         }else {
             throw new Error("Expected a date. At NewTask")
         }

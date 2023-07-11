@@ -1,20 +1,20 @@
 import NewProject from "./NewProject";
-import { myTodos } from ".";
 
 export {save,load};
 
 function save(myTodos){
-    let myTodoList = JSON.stringify(myTodos);
+    const myTodoList = JSON.stringify(myTodos);
     localStorage.setItem('myTodos',myTodoList);
 }
-function load(myTodos){
-    
-    const todos = localStorage.getItem("myTodos");
-    if(todos){
-        myTodos = JSON.parse(todos);
+function load(){
+    const data = localStorage.getItem("myTodos");
+    if(data) {
+        const todoLists =  JSON.parse(data);
+        for(let i=0; i<todoLists.length ;i++){
+            Object.setPrototypeOf(todoLists[i],NewProject.prototype)
+        }
+        return todoLists
+    }else{
+        return [];
     }
-    for(let i=0;i<myTodos.length;i++){
-        Object.setPrototypeOf(myTodos[i],NewProject.prototype);
-    }
-
 }
