@@ -20,9 +20,10 @@ function createTaskDOM(NewTaskObj,NewProjectObj,myTodos){
 
     const taskStatusBtn = document.createElement("button");
     taskStatusBtn.setAttribute("type","button");
+    taskStatusBtn.setAttribute("id","taskStatusBtn")
     taskStatusBtn.classList.add("taskStatusBtn");
     taskStatusBtn.classList.add("taskBtn")
-    taskStatusBtn.textContent = NewTaskObj.complete ? "Done" : "Not Done";
+    taskStatusBtn.textContent = task.complete ? "Done" : "Not Done";
     if(task.complete === true) {
         taskStatusBtn.classList.add("taskDone");
         taskStatusBtn.classList.remove("taskNotDone");
@@ -60,29 +61,51 @@ function createTaskDOM(NewTaskObj,NewProjectObj,myTodos){
         save(myTodos);
     });
 
-    taskStatusBtn.addEventListener("click",() => {
+    taskStatusBtn.addEventListener("click",(e) => {
+        e.stopPropagation()
         for (let i = 0; i < myTodos.length; i++) {
             if(myTodos[i].id === project.id){
                 for(let j=0;j<myTodos[i].tasks.length;j++){
                     if(myTodos[i].tasks[j].id === task.id){
                         if(myTodos[i].tasks[j].complete === false){
                             myTodos[i].tasks[j].complete = true;
-                            taskStatusBtn.textContent = "Done";
-                            taskText.classList.add("taskComplete");
-                            taskStatusBtn.classList.add("taskDone");
-                            taskStatusBtn.classList.remove("taskNotDone");
+                            taskStatusBtnChange(myTodos[i].tasks[j]);
+                            myTodos[i].tasksThisWeek();
+                            myTodos[i].tasksToday();
                         }else if(myTodos[i].tasks[j].complete === true){
                             myTodos[i].tasks[j].complete = false;
-                            taskStatusBtn.textContent = "Not Done";
-                            taskStatusBtn.classList.add("taskNotDone");
-                            taskText.classList.remove("taskComplete");
-                            taskStatusBtn.classList.remove("taskDone");
+                            taskStatusBtnChange(myTodos[i].tasks[j]);
+                            myTodos[i].tasksThisWeek();
+                            myTodos[i].tasksToday();
                         }
                     }
                 }
             }
         }
         save(myTodos);
+        myTodos = load();
+        
+        function taskStatusBtnChange(project) {
+            const taskID = taskDiv.getAttribute("data-task-id")
+            const taskDivs = document.querySelectorAll(`[data-task-id="${taskID}"]`);
+            taskDivs.forEach((div) => {
+                const taskStatusBtn = div.querySelector(".taskStatusBtn");
+                const taskText = div.querySelector(".taskText")
+
+                if(project.complete === true){
+                    taskStatusBtn.textContent = "Done";
+                    taskStatusBtn.classList.add("taskDone");
+                    taskStatusBtn.classList.remove("taskNotDone");
+                    taskText.classList.add("taskComplete");
+                }else {
+                    taskStatusBtn.textContent = "Not Done";
+                    taskStatusBtn.classList.add("taskNotDone");
+                    taskStatusBtn.classList.remove("taskDone");
+                    taskText.classList.remove("taskComplete");
+                }
+            })
+            save(myTodos)
+        }
     })
     return taskDiv;
 }

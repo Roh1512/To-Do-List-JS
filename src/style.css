@@ -15,6 +15,9 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     --taskDivBG: rgb(81, 81, 81);
 }
+body{
+    background-color: black;
+}
 .view {
     display: block;
 }
