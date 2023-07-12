@@ -157,6 +157,7 @@ function createProjectDOM(projectObj,myTodos) {
 function createProjectBtn(project,myTodos,newProjectDom){
     const projectBtn = document.createElement("div");
     projectBtn.classList.add("localTasksBtn");
+    projectBtn.setAttribute("id","projectButton")
     projectBtn.setAttribute("data-project-id",project.id);
     const projectBtnText = document.createElement("p");
 

@@ -81,6 +81,11 @@ header{
     border-bottom: 2px solid black;
 }
 
+.activeProject{
+    background-color: var(--headerBG);
+    color: var(--headerColor);
+}
+
 .projects{
     margin-top: 1rem;
     text-align: center;

@@ -10,7 +10,7 @@ class NewProject {
   }
 
   set addtask(value) {
-    this.tasks.unshift(value);
+    this.tasks.push(value);
     this.tasksThisWeek();
     this.tasksToday();
   }
