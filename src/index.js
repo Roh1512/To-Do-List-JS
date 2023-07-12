@@ -1,7 +1,5 @@
 import './style.css'
-import NewTask from "./NewTask";
 import NewProject from "./NewProject";
-import {createProjectBtn, createProjectDOM} from './createProjectDOM';
 import { save,load } from './Save_Load';
 import ProjectDOM_BTN from './projectDomClass';
 import emptyDOM from './emptyDOM';
@@ -33,9 +31,7 @@ menuIcon.addEventListener("click",() => {
 
 addProjectForm.addEventListener("submit",(e)=> {
     e.preventDefault();
-    const projectName = document.getElementById("addProjectText")
-    const newProject = new NewProject(projectName.value,"");
-    console.log(newProject);
+    const newProject = createNewProject();
     myTodos.push(newProject);
     const newProjectDom = new ProjectDOM_BTN(newProject,myTodos);
     projectDiv.appendChild(newProjectDom.projectBtn);
@@ -46,18 +42,26 @@ addProjectForm.addEventListener("submit",(e)=> {
 window.addEventListener("load",() => {
     myTodos = load();
     adjustSideBar(screenSize);
-    maincontent.replaceChildren(emptyDOM())
     for(let i=0; i<myTodos.length;i++){
         const newProjectDom = new ProjectDOM_BTN(myTodos[i],myTodos);
         projectDiv.appendChild(newProjectDom.projectBtn);
+    }
+    if(myTodos[0]!==undefined) {
+        let a = myTodos[0]
+        let projectDiv = new ProjectDOM_BTN(a,myTodos);
+        maincontent.replaceChildren(projectDiv.projectDOM);
+    }else {
+        maincontent.replaceChildren(emptyDOM());
     }
 })
 
 
 
 function createNewProject() {
-    const projectName = document.getElementById("addProjectText").value;
+    const projectNameInput = document.getElementById("addProjectText");
+    const projectName = projectNameInput.value;
     const newProjectObj = new NewProject(projectName);
+    projectNameInput.value = "";
     return newProjectObj;
 }
 

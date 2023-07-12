@@ -13,7 +13,7 @@ function createProjectDOM(projectObj,myTodos) {
 
     const projectDivHeading = document.createElement("h2");
     projectDivHeading.classList.add("projectDivHeading");
-    projectDivHeading.textContent = project.name;
+    projectDivHeading.textContent = `Project : ${project.name}`;
 
     const addTaskForm = document.createElement("form");
     addTaskForm.classList.add("addTaskForm");
@@ -119,7 +119,6 @@ function createProjectDOM(projectObj,myTodos) {
         for(let i = 0; i < myTodos.length; i++){
             if(myTodos[i].id === project.id){
                 myTodos[i].addtask = task;
-                console.log(myTodos[i].tasks);
             }
         }
         if (task.isToday()) {
@@ -177,8 +176,7 @@ function createProjectBtn(project,myTodos,newProjectDom){
             myTodos = myTodos.filter(t => t.id !== project.id);
             newProjectDom.remove();
             projectBtn.remove();
-            save(myTodos)
-            myTodos = load()
+            save(myTodos);
         }
         mainContent.replaceChildren(emptyDOM())
     })

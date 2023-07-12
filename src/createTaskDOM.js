@@ -48,7 +48,6 @@ function createTaskDOM(NewTaskObj,NewProjectObj,myTodos){
                 for(let j=0;j<myTodos[i].tasks.length;j++){
                     if(myTodos[i].tasks[j].id === task.id){
                         myTodos[i].deleteTask = task.id;
-                        console.log(myTodos[i]);
                     }
                 }
             }
@@ -68,14 +67,12 @@ function createTaskDOM(NewTaskObj,NewProjectObj,myTodos){
                     if(myTodos[i].tasks[j].id === task.id){
                         if(myTodos[i].tasks[j].complete === false){
                             myTodos[i].tasks[j].complete = true;
-                            console.log(myTodos[i].tasks[j]);//Console
                             taskStatusBtn.textContent = "Done";
                             taskText.classList.add("taskComplete");
                             taskStatusBtn.classList.add("taskDone");
                             taskStatusBtn.classList.remove("taskNotDone");
                         }else if(myTodos[i].tasks[j].complete === true){
                             myTodos[i].tasks[j].complete = false;
-                            console.log(myTodos[i].tasks[j]);//console
                             taskStatusBtn.textContent = "Not Done";
                             taskStatusBtn.classList.add("taskNotDone");
                             taskText.classList.remove("taskComplete");
