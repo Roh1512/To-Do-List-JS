@@ -179,7 +179,11 @@ function createProjectBtn(project,myTodos,newProjectDom){
             projectBtn.remove();
             save(myTodos);
         }
-        mainContent.replaceChildren(emptyDOM())
+        mainContent.replaceChildren(emptyDOM());
+        const projectButtons = document.querySelectorAll("#projectButton");
+        projectButtons.forEach((button) => {
+            button.classList.remove("activeProject");
+        });
     })
     return projectBtn;
 }
