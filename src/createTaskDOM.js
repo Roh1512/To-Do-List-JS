@@ -39,7 +39,7 @@ function createTaskDOM(NewTaskObj,NewProjectObj,myTodos){
     taskDeleteBtn.setAttribute("type","button");
     taskDeleteBtn.classList.add("taskBtn")
     taskDeleteBtn.classList.add("taskDeleteBtn");
-    taskDeleteBtn.textContent = "Delete";
+    taskDeleteBtn.textContent = "Remove task";
     taskDiv.appendChild(taskDeleteBtn);
 
     //Event Listeners
