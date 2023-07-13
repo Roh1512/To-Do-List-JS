@@ -14,7 +14,7 @@ function createTaskDOM(NewTaskObj,NewProjectObj,myTodos){
     taskDiv.appendChild(taskText);
 
     const taskDueDate = document.createElement("div");
-    taskDueDate.classList.add("taskDueDate");
+    taskDueDate.classList.add("taskDueDateText");
     taskDueDate.textContent = NewTaskObj.dueDateTxt;
     taskDiv.appendChild(taskDueDate);
 
