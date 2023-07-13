@@ -28,8 +28,7 @@
     --taskDivBG: rgb(81, 81, 81);
 }
 body{
-    background-color: var(--badyBG);
-    color: var(--bodyColor);
+    background-color: black;
 }
 .view {
     display: block;
@@ -393,19 +392,5 @@ header{
         width: 100%;
         height: min-content;
         min-height: min-content;
-    }
-}
-@media only screen and (max-width: 450px){
-    .addTaskForm {
-        display: grid;
-        grid-template-columns: 1fr;
-        min-width: max-content;
-        width: 100vw;
-    }
-    .taskInputElem{
-        grid-column: 1/2;
-    }
-    header{
-        width: 100vw;
     }
 }
