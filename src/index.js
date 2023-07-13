@@ -36,7 +36,6 @@ addProjectForm.addEventListener("submit",(e)=> {
     const newProjectDom = new ProjectDOM_BTN(newProject,myTodos);
     projectDiv.appendChild(newProjectDom.projectBtn);
     const newProjectBtn = newProjectDom.projectBtn;
-    console.log(newProjectBtn);
     newProjectBtn.classList.add("activeProject")
     maincontent.replaceChildren(newProjectDom.projectDOM);
     save(myTodos);
